@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mini Game ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#0f172a,#3b185f,#120136);
+overflow:hidden;
+height:100vh;
+color:white;
+
+}
+
+h1{
+
+text-align:center;
+margin-top:30px;
+
+}
+
+.info{
+
+text-align:center;
+margin:15px;
+font-size:20px;
+
+}
+
+#game{
+
+position:relative;
+width:100%;
+height:75vh;
+
+}
+
+.heart{
+
+position:absolute;
+font-size:45px;
+cursor:pointer;
+user-select:none;
+transition:.2s;
+animation:pulse .8s infinite;
+
+}
+
+.heart:hover{
+
+transform:scale(1.2);
+
+}
+
+@keyframes pulse{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
+
+}
+
+#win{
+
+display:none;
+
+position:absolute;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+background:rgba(255,255,255,.1);
+
+backdrop-filter:blur(15px);
+
+padding:40px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+button{
+
+margin-top:20px;
+
+padding:15px 35px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:40px;
+
+background:#ff4d6d;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>❤️ Tangkap Semua Hati ❤️</h1>
+
+<div class="info">
+
+Skor :
+<span id="score">0</span>/15
+
+&nbsp;&nbsp;&nbsp;
+
+Waktu :
+<span id="time">30</span>
+
+</div>
+
+<div id="game"></div>
+
+<div id="win">
+
+<h2>🎉 Kamu Berhasil! 🎉</h2>
+
+<p>
+
+Sekarang kamu sudah mengumpulkan semua cintaku ❤️
+
+</p>
+
+<button onclick="window.location='final.html'">
+
+Lanjut ❤️
+
+</button>
+
+</div>
+
+<script>
+
+const game=document.getElementById("game");
+
+const scoreText=document.getElementById("score");
+
+const timeText=document.getElementById("time");
+
+let score=0;
+let time=30;
+
+function createHeart(){
+
+if(score>=15) return;
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*(window.innerWidth-80)+"px";
+
+heart.style.top=Math.random()*(window.innerHeight-180)+"px";
+
+heart.onclick=function(){
+
+score++;
+
+scoreText.innerHTML=score;
+
+heart.remove();
+
+if(score>=15){
+
+document.getElementById("win").style.display="block";
+
+}
+
+}
+
+game.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},2500);
+
+}
+
+setInterval(createHeart,700);
+
+const timer=setInterval(()=>{
+
+time--;
+
+timeText.innerHTML=time;
+
+if(time<=0){
+
+clearInterval(timer);
+
+if(score<15){
+
+alert("Yahh belum berhasil 😆 Coba lagi ya ❤️");
+
+location.reload();
+
+}
+
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>

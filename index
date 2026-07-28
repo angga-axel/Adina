@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loading ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+height:100vh;
+overflow:hidden;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+radial-gradient(circle at top,#3f0d62,#120136,#000);
+
+color:white;
+
+}
+
+/* =======================
+        Bintang
+======================= */
+
+.stars{
+
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+
+}
+
+.star{
+
+position:absolute;
+background:white;
+border-radius:50%;
+animation:twinkle 3s infinite;
+
+}
+
+@keyframes twinkle{
+
+0%,100%{
+
+opacity:.2;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+}
+
+/* =======================
+        Hati
+======================= */
+
+.heart{
+
+position:absolute;
+font-size:18px;
+color:#ff4d6d;
+animation:float 10s linear infinite;
+opacity:.8;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(100vh) scale(.5);
+opacity:0;
+
+}
+
+30%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120px) scale(1.2);
+opacity:0;
+
+}
+
+}
+
+/* =======================
+      Container
+======================= */
+
+.container{
+
+position:relative;
+z-index:10;
+text-align:center;
+
+padding:40px;
+
+backdrop-filter:blur(20px);
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:25px;
+
+box-shadow:0 0 50px rgba(255,0,100,.2);
+
+width:90%;
+max-width:600px;
+
+animation:fade 2s;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+h1{
+
+font-size:42px;
+
+margin-bottom:15px;
+
+text-shadow:0 0 20px #ff4d6d;
+
+}
+
+h2{
+
+font-size:22px;
+
+font-weight:300;
+
+margin-bottom:35px;
+
+min-height:35px;
+
+}
+
+.loader{
+
+width:100%;
+height:12px;
+
+background:rgba(255,255,255,.15);
+
+border-radius:50px;
+
+overflow:hidden;
+
+}
+
+.progress{
+
+width:0%;
+height:100%;
+
+background:linear-gradient(90deg,#ff4d6d,#ff8fab);
+
+border-radius:50px;
+
+box-shadow:0 0 20px #ff4d6d;
+
+transition:.05s;
+
+}
+
+.loadingText{
+
+margin-top:18px;
+font-size:15px;
+opacity:.8;
+
+}
+
+footer{
+
+margin-top:30px;
+font-size:13px;
+opacity:.5;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div id="hearts"></div>
+
+<div class="container">
+
+<h1>❤️ For My Love ❤️</h1>
+
+<h2 id="typing"></h2>
+
+<div class="loader">
+
+<div class="progress" id="progress"></div>
+
+</div>
+
+<p class="loadingText">
+
+Preparing something special...
+
+</p>
+
+<footer>
+
+Made with ❤️ just for you
+
+</footer>
+
+</div>
+
+<script>
+
+/* ======================
+   Bintang
+====================== */
+
+const stars=document.getElementById("stars");
+
+for(let i=0;i<180;i++){
+
+const s=document.createElement("div");
+
+s.className="star";
+
+const size=Math.random()*3+1;
+
+s.style.width=size+"px";
+s.style.height=size+"px";
+
+s.style.left=Math.random()*100+"%";
+s.style.top=Math.random()*100+"%";
+
+s.style.animationDelay=Math.random()*5+"s";
+
+stars.appendChild(s);
+
+}
+
+/* ======================
+      Hati
+====================== */
+
+const hearts=document.getElementById("hearts");
+
+function createHeart(){
+
+const h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(15+Math.random()*30)+"px";
+
+h.style.animationDuration=(6+Math.random()*6)+"s";
+
+hearts.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},12000);
+
+}
+
+setInterval(createHeart,300);
+
+/* ======================
+     Typing
+====================== */
+
+const text="Someone sent you a little surprise...";
+
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,60);
+
+}
+
+}
+
+typing();
+
+/* ======================
+      Loading
+====================== */
+
+let progress=0;
+
+const bar=document.getElementById("progress");
+
+const timer=setInterval(()=>{
+
+progress++;
+
+bar.style.width=progress+"%";
+
+if(progress>=100){
+
+clearInterval(timer);
+
+setTimeout(()=>{
+
+window.location.href="welcome.html";
+
+},800);
+
+}
+
+},55);
+
+</script>
+
+</body>
+</html>

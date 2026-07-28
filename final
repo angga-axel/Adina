@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Forever ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+overflow:hidden;
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(180deg,#050816,#13052c,#000);
+
+color:white;
+
+}
+
+/* ================= */
+
+.stars{
+
+position:absolute;
+width:100%;
+height:100%;
+
+background-image:
+radial-gradient(white 1px,transparent 1px);
+
+background-size:40px 40px;
+
+opacity:.25;
+
+animation:move 120s linear infinite;
+
+}
+
+@keyframes move{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(800px);
+
+}
+
+}
+
+/* ================= */
+
+.heart{
+
+position:absolute;
+
+font-size:25px;
+
+animation:fly linear forwards;
+
+pointer-events:none;
+
+}
+
+@keyframes fly{
+
+0%{
+
+transform:translateY(110vh);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-150px);
+
+opacity:0;
+
+}
+
+}
+
+/* ================= */
+
+.firework{
+
+position:absolute;
+
+width:8px;
+height:8px;
+
+background:#fff;
+
+border-radius:50%;
+
+animation:boom 1.2s forwards;
+
+}
+
+@keyframes boom{
+
+0%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(18);
+
+opacity:0;
+
+}
+
+}
+
+/* ================= */
+
+.card{
+
+position:relative;
+
+z-index:5;
+
+text-align:center;
+
+padding:45px;
+
+width:90%;
+max-width:800px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border-radius:25px;
+
+box-shadow:0 0 50px rgba(255,0,120,.2);
+
+}
+
+h1{
+
+font-size:55px;
+
+color:#ff7aa2;
+
+margin-bottom:25px;
+
+}
+
+#typing{
+
+font-size:23px;
+
+line-height:2;
+
+min-height:220px;
+
+}
+
+.buttons{
+
+margin-top:35px;
+
+}
+
+button{
+
+padding:16px 35px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:40px;
+
+cursor:pointer;
+
+transition:.25s;
+
+position:relative;
+
+}
+
+#yes{
+
+background:#ff4d6d;
+
+color:white;
+
+margin-right:20px;
+
+}
+
+#no{
+
+background:white;
+
+color:#ff4d6d;
+
+position:absolute;
+
+}
+
+#finalMessage{
+
+display:none;
+
+margin-top:40px;
+
+font-size:28px;
+
+color:#ffd6e0;
+
+animation:fade 1s;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div id="hearts"></div>
+
+<div class="card">
+
+<h1>❤️ The End ❤️</h1>
+
+<div id="typing"></div>
+
+<div class="buttons">
+
+<button id="yes">
+YES ❤️
+</button>
+
+<button id="no">
+NO 💔
+</button>
+
+</div>
+
+<div id="finalMessage">
+
+🥹❤️
+
+Terima kasih sudah membaca semuanya.
+
+Aku hanya ingin kamu tahu...
+
+Aku akan selalu memilih kamu.
+
+Hari ini.
+
+Besok.
+
+Lusa.
+
+Dan semoga...
+
+Selamanya.
+
+❤️❤️❤️
+
+</div>
+
+</div>
+
+<script>
+
+/* ==========================
+Typing
+========================== */
+
+const message=`Kalau suatu hari nanti...
+
+Aku diberi kesempatan untuk mengulang hidupku.
+
+Aku tetap ingin bertemu kamu.
+
+Tetap ingin mengenal kamu.
+
+Tetap ingin jatuh cinta pada kamu.
+
+Dan tetap ingin menjadikan kamu sebagai rumah tempat hatiku pulang.
+
+Maukah kamu tetap bersamaku selamanya? ❤️`;
+
+let i=0;
+
+function type(){
+
+if(i<message.length){
+
+typing.innerHTML+=message.charAt(i);
+
+i++;
+
+setTimeout(type,45);
+
+}
+
+}
+
+type();
+
+/* ==========================
+Heart
+========================== */
+
+const hearts=document.getElementById("hearts");
+
+function makeHeart(){
+
+const h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*25)+"px";
+
+h.style.animationDuration=(5+Math.random()*5)+"s";
+
+hearts.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},10000);
+
+}
+
+setInterval(makeHeart,150);
+
+/* ==========================
+Firework
+========================== */
+
+function firework(){
+
+const f=document.createElement("div");
+
+f.className="firework";
+
+f.style.left=Math.random()*100+"vw";
+
+f.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(f);
+
+setTimeout(()=>{
+
+f.remove();
+
+},1200);
+
+}
+
+setInterval(firework,350);
+
+/* ==========================
+NO kabur
+========================== */
+
+const no=document.getElementById("no");
+
+no.addEventListener("mouseover",()=>{
+
+const x=Math.random()*(window.innerWidth-120);
+
+const y=Math.random()*(window.innerHeight-70);
+
+no.style.left=x+"px";
+
+no.style.top=y+"px";
+
+});
+
+/* ==========================
+YES
+========================== */
+
+document.getElementById("yes").onclick=function(){
+
+document.querySelector(".buttons").style.display="none";
+
+document.getElementById("finalMessage").style.display="block";
+
+for(let i=0;i<200;i++){
+
+setTimeout(makeHeart,i*20);
+
+}
+
+};
+
+</script>
+
+</body>
+</html>

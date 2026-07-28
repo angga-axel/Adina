@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Surat Untukmu ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#0f172a,#1e293b,#020617);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+overflow:hidden;
+
+color:white;
+
+}
+
+/* Background Bintang */
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background-image:
+radial-gradient(white 1px,transparent 1px);
+
+background-size:35px 35px;
+
+opacity:.15;
+
+animation:move 120s linear infinite;
+
+}
+
+@keyframes move{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(800px);
+
+}
+
+}
+
+/* Hati */
+
+.heart{
+
+position:absolute;
+
+color:#ff5d8f;
+
+font-size:18px;
+
+animation:heart linear forwards;
+
+}
+
+@keyframes heart{
+
+0%{
+
+transform:translateY(110vh) scale(.5);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120px) scale(1.4);
+
+opacity:0;
+
+}
+
+}
+
+/* Container */
+
+.container{
+
+position:relative;
+
+z-index:10;
+
+text-align:center;
+
+}
+
+/* Amplop */
+
+.envelope{
+
+position:relative;
+
+width:260px;
+
+height:180px;
+
+margin:auto;
+
+cursor:pointer;
+
+transition:.5s;
+
+}
+
+.base{
+
+position:absolute;
+
+bottom:0;
+
+width:100%;
+
+height:100%;
+
+background:#ff6f91;
+
+border-radius:0 0 12px 12px;
+
+}
+
+.flap{
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+background:#ff8fab;
+
+clip-path:polygon(0 0,100% 0,50% 60%);
+
+transform-origin:top;
+
+transition:1s;
+
+}
+
+.letter{
+
+position:absolute;
+
+left:15px;
+
+top:20px;
+
+width:230px;
+
+height:260px;
+
+background:white;
+
+color:#333;
+
+padding:25px;
+
+border-radius:12px;
+
+transform:translateY(120px);
+
+transition:1s;
+
+overflow:auto;
+
+line-height:1.8;
+
+text-align:left;
+
+}
+
+.open .flap{
+
+transform:rotateX(180deg);
+
+}
+
+.open .letter{
+
+transform:translateY(-170px);
+
+}
+
+#text{
+
+white-space:pre-line;
+
+}
+
+button{
+
+margin-top:35px;
+
+padding:15px 30px;
+
+border:none;
+
+border-radius:40px;
+
+font-size:18px;
+
+cursor:pointer;
+
+background:#ff4d6d;
+
+color:white;
+
+display:none;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 20px #ff4d6d;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<div class="container">
+
+<h1 style="margin-bottom:40px;">
+💌 Klik Amplopnya
+</h1>
+
+<div class="envelope" id="env">
+
+<div class="flap"></div>
+
+<div class="base"></div>
+
+<div class="letter">
+
+<div id="text"></div>
+
+</div>
+
+</div>
+
+<button id="nextBtn">
+📸 Lihat Kenangan Kita
+</button>
+
+</div>
+
+<script>
+
+/* ==========================
+        HATI
+========================== */
+
+const hearts=document.getElementById("hearts");
+
+function createHeart(){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(15+Math.random()*20)+"px";
+
+h.style.animationDuration=(6+Math.random()*5)+"s";
+
+hearts.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},11000);
+
+}
+
+setInterval(createHeart,300);
+
+/* ==========================
+      SURAT
+========================== */
+
+const env=document.getElementById("env");
+
+const txt=document.getElementById("text");
+
+const next=document.getElementById("nextBtn");
+
+const message=`Hai Sayang ❤️
+
+Kalau kamu sedang membaca surat ini,
+berarti kamu sudah sampai di bagian paling spesial.
+
+Terima kasih sudah hadir dalam hidupku.
+
+Terima kasih sudah mau bertahan,
+mendengarkan cerita-ceritaku,
+menghiburku ketika aku lelah,
+dan menjadi alasan mengapa aku tersenyum.
+
+Aku mungkin bukan orang yang sempurna.
+
+Aku masih banyak kurangnya.
+
+Tetapi satu hal yang selalu aku usahakan...
+
+adalah mencintaimu dengan sungguh-sungguh.
+
+Semoga kita bisa terus berjalan bersama,
+melewati banyak cerita,
+menggapai mimpi,
+dan suatu hari nanti...
+
+bukan hanya menjadi 'kita',
+
+tetapi menjadi keluarga kecil yang bahagia.
+
+❤️
+
+I Love You More Than Yesterday.`;
+
+env.onclick=function(){
+
+env.classList.add("open");
+
+let i=0;
+
+function typing(){
+
+if(i<message.length){
+
+txt.innerHTML+=message.charAt(i);
+
+i++;
+
+setTimeout(typing,35);
+
+}else{
+
+next.style.display="inline-block";
+
+}
+
+}
+
+typing();
+
+env.onclick=null;
+
+}
+
+/* ==========================
+      NEXT
+========================== */
+
+next.onclick=function(){
+
+document.body.style.transition="1s";
+
+document.body.style.opacity="0";
+
+setTimeout(()=>{
+
+window.location="gallery.html";
+
+},1000);
+
+}
+
+</script>
+
+</body>
+</html>

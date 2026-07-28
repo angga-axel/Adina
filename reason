@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>100 Alasan Aku Sayang Kamu ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+height:100vh;
+overflow:hidden;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(135deg,#120136,#3B185F,#0F172A);
+
+color:white;
+
+}
+
+.stars{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background-image:
+radial-gradient(white 1px,transparent 1px);
+
+background-size:40px 40px;
+
+opacity:.15;
+
+animation:move 120s linear infinite;
+
+}
+
+@keyframes move{
+
+from{transform:translateY(0);}
+to{transform:translateY(800px);}
+
+}
+
+.heart{
+
+position:absolute;
+color:#ff5d8f;
+animation:fly linear forwards;
+
+}
+
+@keyframes fly{
+
+0%{
+
+transform:translateY(100vh);
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120px);
+opacity:0;
+
+}
+
+}
+
+.container{
+
+position:relative;
+z-index:5;
+
+width:90%;
+max-width:750px;
+
+padding:45px;
+
+text-align:center;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(15px);
+
+border-radius:25px;
+
+box-shadow:0 0 40px rgba(255,0,120,.25);
+
+}
+
+h1{
+
+font-size:40px;
+
+margin-bottom:20px;
+
+color:#ff85a2;
+
+}
+
+.counter{
+
+margin-bottom:25px;
+
+font-size:18px;
+
+opacity:.8;
+
+}
+
+.reason{
+
+min-height:140px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:24px;
+
+line-height:1.8;
+
+padding:20px;
+
+animation:fade .5s;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+.progress{
+
+width:100%;
+height:12px;
+
+background:rgba(255,255,255,.15);
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-top:25px;
+
+}
+
+.bar{
+
+height:100%;
+width:1%;
+
+background:#ff4d6d;
+
+transition:.4s;
+
+}
+
+button{
+
+margin-top:30px;
+
+padding:15px 30px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:40px;
+
+cursor:pointer;
+
+background:#ff4d6d;
+
+color:white;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 20px #ff4d6d;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div id="hearts"></div>
+
+<div class="container">
+
+<h1>❤️ 100 Alasan Aku Sayang Kamu ❤️</h1>
+
+<div class="counter">
+Alasan <span id="num">1</span> dari 100
+</div>
+
+<div class="reason" id="reason">
+
+Karena senyummu selalu berhasil membuat hariku lebih indah.
+
+</div>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<button id="next">
+Alasan Berikutnya ❤️
+</button>
+
+</div>
+
+<script>
+
+/* ================= HEART ================= */
+
+const hearts=document.getElementById("hearts");
+
+function makeHeart(){
+
+const h=document.createElement("div");
+
+h.className="heart";
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*20)+"px";
+h.style.animationDuration=(6+Math.random()*5)+"s";
+
+hearts.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},11000);
+
+}
+
+setInterval(makeHeart,300);
+
+/* ================= REASONS ================= */
+
+const reasons=[];
+
+for(let i=1;i<=100;i++){
+
+reasons.push(`Alasan ke-${i}: Aku selalu merasa lebih bahagia setiap kali bersamamu. ❤️`);
+
+}
+
+/* Beberapa alasan pertama dibuat berbeda */
+
+reasons[0]="Karena senyummu selalu berhasil membuat hariku lebih indah.";
+reasons[1]="Karena kamu selalu membuatku merasa diterima apa adanya.";
+reasons[2]="Karena kamu selalu ada ketika aku membutuhkan.";
+reasons[3]="Karena tawamu adalah suara favoritku.";
+reasons[4]="Karena bersamamu, hal-hal sederhana terasa istimewa.";
+reasons[5]="Karena kamu membuatku ingin menjadi pribadi yang lebih baik.";
+reasons[6]="Karena perhatian kecilmu sangat berarti bagiku.";
+reasons[7]="Karena kamu adalah tempat ternyaman untuk pulang.";
+reasons[8]="Karena setiap kenangan bersamamu selalu ingin kuulang.";
+reasons[9]="Karena aku tidak pernah bosan mencintaimu.";
+
+let index=0;
+
+const text=document.getElementById("reason");
+const num=document.getElementById("num");
+const bar=document.getElementById("bar");
+const btn=document.getElementById("next");
+
+btn.onclick=function(){
+
+index++;
+
+if(index<100){
+
+text.style.animation="none";
+void text.offsetWidth;
+text.style.animation="fade .5s";
+
+text.innerHTML=reasons[index];
+
+num.innerHTML=index+1;
+
+bar.style.width=(index+1)+"%";
+
+}else{
+
+document.querySelector(".container").innerHTML=`
+
+<h1>❤️ Semua Alasan Itu Bermuara Pada Satu Hal ❤️</h1>
+
+<div style="font-size:26px;line-height:2;margin-top:30px;">
+
+Aku mencintaimu bukan hanya karena 100 alasan...
+
+Tetapi karena kamu adalah kamu.
+
+Dan itu sudah lebih dari cukup.
+
+❤️
+
+</div>
+
+<button onclick="window.location='game.html'">
+
+🎮 Ada Kejutan Terakhir
+
+</button>
+
+`;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
